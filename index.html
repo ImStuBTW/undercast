@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style="height: 100%; width: 100%;">
+        <webview id="overcast" src="https://overcast.fm/login" preload="preload.js" webpreferences="allowDisplayingInsecureContent=yes"></webview>
+    </div>
+    <script>
+        var playpause = function() {
+            document.getElementById('overcast').executeJavaScript('__myAPI.playpause();');
+        }
+    </script>
+</body>
+</html>
