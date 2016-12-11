@@ -10,8 +10,35 @@
         <webview id="overcast" src="https://overcast.fm/login" preload="preload.js" webpreferences="allowDisplayingInsecureContent=yes"></webview>
     </div>
     <script>
+        const remote = require('electron').remote;
+        /*document.getElementById('overcast').addEventListener('dom-ready', () => {
+            document.getElementById('overcast').openDevTools()
+        })*/
+        document.getElementById('overcast').addEventListener('did-finish-load', () => {
+            if(document.getElementById('overcast').getURL() === 'https://overcast.fm/podcasts') {
+                document.getElementById('overcast').executeJavaScript('__myAPI.scrollList();');
+            }
+            else if(document.getElementById('overcast').getURL().slice(0,21) === 'https://overcast.fm/+') {
+                document.getElementById('overcast').executeJavaScript('__myAPI.scrollPlayer();');
+            }
+        })
+        document.getElementById('overcast').addEventListener('media-started-playing', () => {
+            remote.getGlobal('playing')();
+        })
+        document.getElementById('overcast').addEventListener('media-paused', () => {
+            remote.getGlobal('paused')();
+        })
         var playpause = function() {
             document.getElementById('overcast').executeJavaScript('__myAPI.playpause();');
+        }
+        var stop = function() {
+            document.getElementById('overcast').executeJavaScript('__myAPI.stop();');
+        }
+        var next = function() {
+            document.getElementById('overcast').executeJavaScript('__myAPI.next();');
+        }
+        var previous = function() {
+            document.getElementById('overcast').executeJavaScript('__myAPI.previous();');
         }
     </script>
 </body>
