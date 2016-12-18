@@ -1,5 +1,5 @@
 {
-  "name": "Undercast",
+  "name": "undercast",
   "version": "1.0.0",
   "description": "A Mac & Windows Desktop App for Overcast with Media Key Support",
   "main": "main.js",

@@ -33,9 +33,9 @@ Using Electron, Undercast creates a sandboxed instance of [Overcast.fm](https://
 
 Precompiled builds of Undercast are located in the `/releases` folder. Simply unzip them and launch the .app or .exe file.
 
-[Current Mac Release]()
+[Current Mac Release](releases/Undercast.app.zip)
 
-[Current Windows Release]()
+[Current Windows Release](releases/undercast-win32-x64.zip)
 
 # Building It Yourself
 
