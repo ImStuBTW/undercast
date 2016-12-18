@@ -1,13 +1,26 @@
 {
-  "name": "electro",
+  "name": "Undercast",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Mac & Windows Desktop App for Overcast with Media Key Support",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/imstuartjones/undercast"
+  },
+  "keywords": [
+      "Overcast",
+      "Undercast",
+      "Electron",
+      "NodeJS",
+      "Node",
+      "Menubar",
+      "Applet"
+  ],
+  "author": "Stuart Jones",
+  "license": "MIT",
   "dependencies": {
     "electron": "^1.4.11",
     "menubar": "^5.1.0"
