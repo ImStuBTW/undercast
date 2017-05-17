@@ -7,22 +7,22 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-      "type": "git",
-      "url": "https://github.com/imstuartjones/undercast"
+    "type": "git",
+    "url": "https://github.com/imstuartjones/undercast"
   },
   "keywords": [
-      "Overcast",
-      "Undercast",
-      "Electron",
-      "NodeJS",
-      "Node",
-      "Menubar",
-      "Applet"
+    "Overcast",
+    "Undercast",
+    "Electron",
+    "NodeJS",
+    "Node",
+    "Menubar",
+    "Applet"
   ],
   "author": "Stuart Jones",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.4.11",
-    "menubar": "^5.1.0"
+    "electron": "1.6.8",
+    "menubar": "5.2.3"
   }
 }
