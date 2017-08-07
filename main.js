@@ -37,7 +37,7 @@ global.playing = function() {
 // Pause state is determined by 'media-paused' event.
 global.paused = function() {
     if(indicator) {
-        mb.tray.setImage(path.join(__dirname, 'white.png'));
+        mb.tray.setImage(path.join(__dirname, 'iconTemplate.png'));
     }
     isPlaying = false;
 }
@@ -67,7 +67,7 @@ const rcMenuTemplate = [
         checked: indicator,
         click () {
             if(indicator) {
-                mb.tray.setImage(path.join(__dirname, 'white.png'));
+                mb.tray.setImage(path.join(__dirname, 'iconTemplate.png'));
             }
             else {
                 if(isPlaying) {
