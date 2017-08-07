@@ -13,7 +13,8 @@ const path = require('path');
 const url = require('url');
 
 // Declare Menubar and Options.
-var options = {icon: path.join(__dirname, 'white.png'), width: 300, height: 400, preloadWindow: true}
+// TODO: Use iconTemplate.png on macOS, white.png on Windows.
+var options = {icon: path.join(__dirname, 'iconTemplate.png'), width: 300, height: 400, preloadWindow: true}
 var mb = menubar(options);
 
 // Options Variables.
