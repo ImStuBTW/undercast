@@ -1,12 +1,14 @@
 // Electron Declarations.
 const electron = require('electron');
 const app = electron.app;
+const shell = electron.shell;
 const BrowserWindow = electron.BrowserWindow;
 const globalShortcut = electron.globalShortcut;
 const webContents = electron.webContents;
 const remote = electron.remote;
 const Menu = electron.Menu;
 const menubar = require('menubar');
+const defaultMenu = require('electron-default-menu');
 
 // Helper Functions.
 const path = require('path');
@@ -111,6 +113,9 @@ var unregisterKeys = function() {
 // Show window when the app first runs.
 // A 1ms delay is required to fix a bug causing the window to disappear after spawning.
 mb.on('ready', function ready () {
+    // Get template for default menu
+    const menu = defaultMenu(app, shell);
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
     setTimeout(function(){mb.showWindow();},1);
 })
 
