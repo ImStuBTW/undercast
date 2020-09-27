@@ -22,8 +22,8 @@
   "author": "Stuart Jones",
   "license": "MIT",
   "dependencies": {
-    "electron": "1.6.16",
-    "electron-default-menu": "^1.0.1",
-    "menubar": "5.2.3"
+    "electron": "^10.1.2",
+    "electron-default-menu": "^1.0.2",
+    "menubar": "^9.0.1"
   }
 }

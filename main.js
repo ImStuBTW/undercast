@@ -1,13 +1,6 @@
 // Electron Declarations.
-const electron = require('electron');
-const app = electron.app;
-const shell = electron.shell;
-const BrowserWindow = electron.BrowserWindow;
-const globalShortcut = electron.globalShortcut;
-const webContents = electron.webContents;
-const remote = electron.remote;
-const Menu = electron.Menu;
-const menubar = require('menubar');
+const { app, shell, BrowserWindow, globalShortcut, webContents, remote, Menu } = require('electron');
+const { menubar } = require('menubar');
 const defaultMenu = require('electron-default-menu');
 
 // Helper Functions.
@@ -16,7 +9,18 @@ const url = require('url');
 
 // Declare Menubar and Options.
 // TODO: Use iconTemplate.png on macOS, white.png on Windows.
-var options = {icon: path.join(__dirname, 'iconTemplate.png'), width: 300, height: 400, preloadWindow: true}
+var options = {
+    icon: path.join(__dirname, 'iconTemplate.png'),
+    width: 300, height: 400,
+    preloadWindow: true,
+    browserWindow: {
+        webPreferences: {
+            nodeIntegration: true,
+            webviewTag: true,
+            enableRemoteModule: true
+        }
+    }
+};
 var mb = menubar(options);
 
 // Options Variables.
