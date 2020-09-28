@@ -8,8 +8,10 @@ const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 const url = require('url');
 
+// Electron-Forge Windows installer tweak
+if(require('electron-squirrel-startup')) { return app.quit(); }
+
 // Declare Menubar and Options.
-// TODO: Use iconTemplate.png on macOS, white.png on Windows.
 var options = {
     icon: path.join(__dirname, 'iconTemplate.png'),
     showOnAllWorkspaces: false,
@@ -23,6 +25,11 @@ var options = {
         }
     }
 };
+
+// Use iconTemplate.png on macOS, white.png on Windows.
+if(process.platform === "win32") {
+    options.icon = path.join(__dirname, 'white.png');
+}
 
 // Main menubar instance. Uses the above options. Defaults to opening ./index.html
 var mb = menubar(options);
@@ -47,7 +54,8 @@ global.playing = function() {
 // Pause state is determined by 'media-paused' event.
 global.paused = function() {
     if(indicator) {
-        mb.tray.setImage(path.join(__dirname, 'iconTemplate.png'));
+        if(process.platform === "win32") { mb.tray.setImage(path.join(__dirname, 'white.png')); }
+        else { mb.tray.setImage(path.join(__dirname, 'iconTemplate.png')); }
     }
     isPlaying = false;
 }
@@ -63,7 +71,8 @@ const rcMenuTemplate = [
         checked: indicator,
         click () {
             if(indicator) {
-                mb.tray.setImage(path.join(__dirname, 'iconTemplate.png'));
+                if(process.platform === "win32") { mb.tray.setImage(path.join(__dirname, 'white.png')); }
+                else { mb.tray.setImage(path.join(__dirname, 'iconTemplate.png')); }
             }
             else {
                 if(isPlaying) {
@@ -130,6 +139,19 @@ mb.on('after-create-window', function () {
     mb.tray.on('right-click', function(){
         mb.tray.popUpContextMenu(rcMenu);
     });
+});
+
+// Fix window position on Windows.
+mb.on("show", function() {
+    if(process.platform === "win32") {
+        var trayBounds = mb._tray.getBounds();
+        var windowPosition = "trayBottomCenter";
+        if(trayBounds.width === trayBounds.height && trayBounds.x < trayBounds.y) {
+            // Force right place for the window if taskbar is on left.
+            windowPosition = "bottomLeft";
+        }
+        mb.setOption("windowPosition", windowPosition);
+    }
 });
 
 // Unregister media keys upon exit.
