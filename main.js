@@ -11,9 +11,10 @@ const url = require('url');
 // TODO: Use iconTemplate.png on macOS, white.png on Windows.
 var options = {
     icon: path.join(__dirname, 'iconTemplate.png'),
-    width: 300, height: 400,
+    showOnAllWorkspaces: false,
     preloadWindow: true,
     browserWindow: {
+        width: 300, height: 425,
         webPreferences: {
             nodeIntegration: true,
             webviewTag: true,
@@ -53,20 +54,6 @@ global.paused = function() {
 // Show Playing Indicator changes menu icon based on playing state.
 // Quit quits. Obviously.
 const rcMenuTemplate = [
-    {
-        label: 'Bind Media Keys',
-        type: 'checkbox',
-        checked: keysBound,
-        click () {
-            if(keysBound) {
-                unregisterKeys();
-            }
-            else {
-                registerKeys();
-            }
-            keysBound = !keysBound;
-        }
-    },
     {
         label: 'Show Playing Indicator',
         type: 'checkbox',
@@ -121,6 +108,7 @@ mb.on('ready', function ready () {
     const menu = defaultMenu(app, shell);
     Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
     setTimeout(function(){mb.showWindow();},1);
+    mb.dock.hide();
 })
 
 // Register the media keys and tray menu once the app starts.

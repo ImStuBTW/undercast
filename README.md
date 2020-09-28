@@ -23,6 +23,14 @@ Undercast tries to make up for these shortcomings. Rather than writing an entire
 * Playback Indicator
 	* By default, Undercast's icon changes from white to orange when a podcast is playing. This setting can be disabled in the right click menu.
 
+# What's New In Version 2?
+
+Version 2 of Undercast brought the Electron and Menubar packages up to speed, so there should be a few bugfix and performans improvements there. The current architecture of Undercast is based on the Webview and Remote compoents of Electron, both of which are currently being sunset, so we'll see how long it's able to hand in there without a full rewrite.
+
+Undercast now supports Electron-Fordge for building distributions. Simply `npm install`, then `npm run make` if you need to make a new distributable. `npm start` still gets things up and running when you're developing.
+
+Additionally, the panel placement issue on Windows machines where the taskbar is on the left or right of the screen has now been resolved.
+
 # How Undercast Works
 
 Undercast uses a technology called [Electron](http://electron.atom.io). It was developed by Github for use with their [Atom](http://atom.io) text editor, but has become a generalized tool for creating cross platform applications using web technologies like HTML, CSS, and Javascript.
