@@ -29,7 +29,18 @@ Version 2 of Undercast brought the Electron and Menubar packages up to speed, so
 
 Undercast now supports Electron-Fordge for building distributions. Simply `npm install`, then `npm run make` if you need to make a new distributable. `npm start` still gets things up and running when you're developing.
 
-Additionally, the panel placement issue on Windows machines where the taskbar is on the left or right of the screen has now been resolved.
+Additional Changes:
+* The window placement issue on Windows machines where the taskbar is on the left or right of the screen has now been resolved.
+* Due to changes in the Overcast.fm website, Undercast no longer provides the option to disable media hotkeys.
+* Undercast now remembers the previous window size when you restart the application. Window size settings are stored in the user's App Data or Application Support folders in the `window-state.json` file.
+
+# macOS Notes
+
+On macOS 10.14 "Mojava" and later, the operating system now requires you to provide Undercast accessibility access to gain control of all media keys. To grant these permissions, open the System Preferences application, then browse to the Security & Privacy section. Navigate to the Privacy Tab, then choose Accessibility from the list. If you have launched Undercast before, you should see it in the list of applications. Enter your system credentials using the lock icon in the bottom right corner of the screen, then check the box next to Undercast.
+
+![macOS Permissions](permissions.png)
+
+Additional details on this requirement can be found in the [Electron docs](https://www.electronjs.org/docs/api/global-shortcut#globalshortcutregisterallaccelerators-callback).
 
 # How Undercast Works
 

@@ -2,6 +2,7 @@
 const { app, shell, BrowserWindow, globalShortcut, webContents, remote, Menu } = require('electron');
 const { menubar } = require('menubar');
 const defaultMenu = require('electron-default-menu');
+const windowStateKeeper = require('electron-window-state');
 
 // Helper Functions.
 const path = require('path');
@@ -104,11 +105,20 @@ var unregisterKeys = function() {
 // Show window when the app first runs.
 // A 1ms delay is required to fix a bug causing the window to disappear after spawning.
 mb.on('ready', function ready () {
+    // Load previous window size with fallback to default.
+    let mainWindowState = windowStateKeeper({
+        defaultWidth: 300,
+        defaultHeight: 425
+    });
+    mainWindowState.manage(mb.window);
+    mb.window.setSize(mainWindowState.width, mainWindowState.height);
+
+    console.log('width: ' + mainWindowState.width + ', height: ' + mainWindowState.height);
+
     // Get template for default menu
     const menu = defaultMenu(app, shell);
     Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
     setTimeout(function(){mb.showWindow();},1);
-    mb.dock.hide();
 })
 
 // Register the media keys and tray menu once the app starts.
