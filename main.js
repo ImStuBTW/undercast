@@ -23,6 +23,8 @@ var options = {
         }
     }
 };
+
+// Main menubar instance. Uses the above options. Defaults to opening ./index.html
 var mb = menubar(options);
 
 // Options Variables.
@@ -110,10 +112,11 @@ mb.on('ready', function ready () {
         defaultWidth: 300,
         defaultHeight: 425
     });
+    // Let windowStateKeeper manage menubar window resizing callbacks.
     mainWindowState.manage(mb.window);
+    // Window size has already been initialized with the menubar default options.
+    // Update menubar window with the saved window size.
     mb.window.setSize(mainWindowState.width, mainWindowState.height);
-
-    console.log('width: ' + mainWindowState.width + ', height: ' + mainWindowState.height);
 
     // Get template for default menu
     const menu = defaultMenu(app, shell);
